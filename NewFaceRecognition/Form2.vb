@@ -8,7 +8,7 @@ Public Class RegisterEmployee
     Dim cmd As New MySqlCommand
     Dim connection As New MySqlConnection("datasource=localhost;port=3306;username=root;password=admin;database=hrms")
     Dim table As New DataTable()
-    Dim adapter1 As New MySqlDataAdapter("SELECT * FROM hrms.tbl_personal_info", connection)
+    Dim adapter1 As New MySqlDataAdapter("SELECT * FROM employeedb.table_employee", connection)
     'Dim conn As DBConnection()
 
 
@@ -92,7 +92,7 @@ Public Class RegisterEmployee
     Public Sub RegisterEmployee_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim connection As New MySqlConnection("datasource=localhost;port=3306;username=root;password=admin")
         Dim table As New DataTable()
-        Dim adapter As New MySqlDataAdapter("SELECT * FROM hrms.tbl_personal_info", connection)
+        Dim adapter As New MySqlDataAdapter("SELECT * FROM employeedb.table_employee", connection)
         adapter.Fill(table)
 
         dataEmployeeList.DataSource = table
@@ -101,7 +101,7 @@ Public Class RegisterEmployee
     Private Sub btnReload_Click(sender As Object, e As EventArgs) Handles btnReload.Click
         Dim connection As New MySqlConnection("datasource=localhost;port=3306;username=root;password=admin")
         Dim table As New DataTable()
-        Dim adapter As New MySqlDataAdapter("SELECT * FROM hrms.tbl_personal_info", connection)
+        Dim adapter As New MySqlDataAdapter("SELECT * FROM employeedb.table_employee", connection)
         adapter.Fill(table)
 
         dataEmployeeList.DataSource = table

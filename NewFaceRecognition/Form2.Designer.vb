@@ -144,7 +144,7 @@ Partial Class RegisterEmployee
         'btnReload
         '
         Me.btnReload.Font = New System.Drawing.Font("Yu Gothic UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnReload.Location = New System.Drawing.Point(779, 732)
+        Me.btnReload.Location = New System.Drawing.Point(785, 722)
         Me.btnReload.Name = "btnReload"
         Me.btnReload.Size = New System.Drawing.Size(322, 31)
         Me.btnReload.TabIndex = 9

@@ -32,7 +32,7 @@ namespace Verilook_Sample_App.Services
                 BiometricTypes = NBiometricType.Face,
                 UseDeviceManager = true,
                 FacesTemplateSize = NTemplateSize.Small,
-                FacesDetectAllFeaturePoints=false,
+                FacesDetectAllFeaturePoints = false,
             };
 
 
@@ -80,7 +80,8 @@ namespace Verilook_Sample_App.Services
                     return true;
                 }
                 else
-                    ShowError("No License file was found.", "License setup failed");
+                    NLicenseManager.TrialMode = true;
+                //ShowError("No License file was found.", "License setup failed");
             }
             else
                 ShowError("License Directory was not found.", "License setup failed");

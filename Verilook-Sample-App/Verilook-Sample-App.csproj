@@ -33,7 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MySql.Data, Version=8.0.29.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="MySql.Data, Version=8.0.29.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\MySQL\MySQL Connector Net 8.0.30\Assemblies\net5.0\MySql.Data.dll</HintPath>
+    </Reference>
     <Reference Include="Neurotec">
       <HintPath>D:\1 - Programs\3 - Facial Recognition\0 - SDK files\Neurotec_Biometric_11_1_SDK_2019-03-25\Neurotec_Biometric_11_1_SDK\Bin\dotNET\Neurotec.dll</HintPath>
     </Reference>
