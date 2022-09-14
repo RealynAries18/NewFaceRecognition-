@@ -8,20 +8,17 @@ using Verilook_Sample_App.Persistence;
 
 namespace Verilook_Sample_App.Services.Face_Profile
 {
-    public class FaceProfileManager : IFaceProfileManager
+    public class FaceProfileProvider : IFaceProfileProvider
     {
-
         private readonly IFaceProfilePersistenceManager _databaseManager;
 
-        public FaceProfileManager(IFaceProfilePersistenceManager databaseManager)
+        public FaceProfileProvider(IFaceProfilePersistenceManager databaseManager)
         {
             _databaseManager = databaseManager;
         }
 
 
-        public void Save(FaceProfile face)
-        {
-            _databaseManager.SaveFaceProfile(face);
-        }
+        public IEnumerable<FaceProfile> Collect() =>
+            _databaseManager.GetAllFaceProfile();
     }
 }

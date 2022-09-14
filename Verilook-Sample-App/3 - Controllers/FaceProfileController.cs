@@ -20,9 +20,15 @@ namespace Verilook_Sample_App.Controllers
             _provider = provider;
             _manager = manager;
             _verilookManager = verilookManager;
+
+            _verilookManager.SetFaceProfiles(_provider.Collect());
         }
 
-        public async Task<bool> EnrollUser(string id)
+        public IEnumerable<FaceProfile> CollectFaces() =>
+            _provider.Collect();
+
+
+        public async Task<bool> EnrollFace(string id)
         {
             FaceProfile face = new FaceProfile()
             {
@@ -30,12 +36,14 @@ namespace Verilook_Sample_App.Controllers
                 Active = true,
                 Admin = false,
             };
-            face.FaceSubject = await _verilookManager.EnrollAsync();
+            face.FaceSubject = await _verilookManager.CaptureFaceAsync();
             if (face.FaceSubject != null)
                 _manager.Save(face);
             else return false;
             return true;
         }
 
+        public async Task<string> IdentifyFace() =>
+            await _verilookManager.IdentifyAsync();
     }
 }

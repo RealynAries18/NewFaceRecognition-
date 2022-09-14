@@ -25,7 +25,7 @@ namespace Verilook_Sample_App.Persistence
             _connection.Open();
             try
             {
-                using (MySqlDataReader reader = new MySqlCommand("SELECT * FROM facerec_db;", _connection).ExecuteReader())
+                using (MySqlDataReader reader = new MySqlCommand("SELECT * FROM faceprofile;", _connection).ExecuteReader())
                 {
                     while (reader.Read())
                     {

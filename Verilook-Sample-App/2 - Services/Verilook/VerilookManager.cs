@@ -12,6 +12,9 @@ namespace Verilook_Sample_App.Services
 {
     public class VerilookManager : IVerilookManager
     {
+
+        private NBiometricTask _faceTask { get; set; }
+
         private NBiometricClient _faceClient { get; set; }
         private NFaceView _faceView { get; set; }
 
@@ -23,9 +26,12 @@ namespace Verilook_Sample_App.Services
             _faceClient = faceClient;
             _faceView = faceView;
             _captureOptions = captureOptions;
+
+
+            _faceTask = new NBiometricTask(NBiometricOperations.Identify);
         }
 
-        public async Task<NSubject> EnrollAsync()
+        public async Task<NSubject> CaptureFaceAsync()
         {
             NSubject newFaceSubject = new NSubject();
             newFaceSubject.Faces.Add(new NFace() { CaptureOptions = _captureOptions });
@@ -34,20 +40,32 @@ namespace Verilook_Sample_App.Services
 
             NBiometricStatus status = await _faceClient.CaptureAsync(newFaceSubject);
             if (status == NBiometricStatus.Ok)
-            {
                 return newFaceSubject;
-            }
             return null;
         }
 
-        public void Identify()
+        public async Task<string> IdentifyAsync()
         {
-            throw new NotImplementedException();
+            NSubject fs = await CaptureFaceAsync();
+             
+            if (fs != null)
+            {
+                _faceTask.Operations = NBiometricOperations.Enroll;
+                _faceTask = await _faceClient.PerformTaskAsync(_faceTask);
+                NBiometricStatus res = await _faceClient.IdentifyAsync(fs);
+                if (res == NBiometricStatus.Ok)
+                    return fs.MatchingResults.First().Id;
+            }
+
+
+            return "";
         }
 
-        public void Save(FaceProfile faceProfile)
+
+        public void SetFaceProfiles(IEnumerable<FaceProfile> faceProfiles)
         {
-            throw new NotImplementedException();
+            foreach (NSubject faceSubject in faceProfiles.Select(f => f.FaceSubject))
+                _faceTask.Subjects.Add(faceSubject);
         }
     }
 }

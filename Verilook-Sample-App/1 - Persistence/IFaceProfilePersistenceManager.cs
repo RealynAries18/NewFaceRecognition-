@@ -9,7 +9,7 @@ namespace Verilook_Sample_App.Persistence
 {
     public interface IFaceProfilePersistenceManager
     {
-
+        IEnumerable<FaceProfile> GetAllFaceProfile();
         void SaveFaceProfile(FaceProfile face);
     }
 }

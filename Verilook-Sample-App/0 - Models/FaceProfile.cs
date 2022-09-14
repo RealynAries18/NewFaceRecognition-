@@ -16,8 +16,11 @@ namespace Verilook_Sample_App.Models
 
 
         public NSubject FaceSubject { get; set; }
-        public void SetFaceSubject(byte[] value) =>
+        public void SetFaceSubject(byte[] value)
+        {
             FaceSubject = NSubject.FromMemory(NBuffer.FromArray(value));
+            FaceSubject.Id = Id;
+        }
 
         public byte[] ConvertToInsertableFaceSubject() =>
             FaceSubject.GetTemplateBuffer().ToArray();
